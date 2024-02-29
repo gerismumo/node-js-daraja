@@ -4,18 +4,17 @@ const axios = require('axios');
 
 
 const payment = async(req, res) => {
+  try {
     const amount = parseInt(req.body.amount);
     const phoneNumber = parseInt(req.body.phone);
 
-  console.log(amount, phoneNumber);
+    console.log(amount, phoneNumber);
 
-  if (amount === undefined || phoneNumber === undefined || amount === '' || phoneNumber === '') {
-        return res.json({ success: false, message: 'Please fill all the fields' });
-    }
+    if (amount === undefined || phoneNumber === undefined || amount === '' || phoneNumber === '') {
+            return res.json({ success: false, message: 'Please fill all the fields' });
+        }
 
-  try {
-
-    //generate token
+    // generate token
     const key = process.env.CONSUMER_KEY;
     const secret = process.env.CONSUMER_SECRET;
     const basicAuth = `${key}:${secret}`;
@@ -43,7 +42,8 @@ const payment = async(req, res) => {
 
     const date = new Date();
     const year = date.getFullYear();
-    const currentMonth = date.getMonth() +1 ;
+    const currentMonth = date.getMonth()+ 1;
+; 
     const  month = currentMonth < 10 ? '0'+currentMonth : currentMonth;
     const todayDate = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
     const hour = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
@@ -51,7 +51,7 @@ const payment = async(req, res) => {
     const seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
     
 
-    const Timestamp = parseInt(`${year}${month}${todayDate}${hour}${minutes}${seconds}`);
+    const Timestamp = `${year}${month}${todayDate}${hour}${minutes}${seconds}`
 
    console.log(Timestamp);
 
@@ -69,20 +69,18 @@ const payment = async(req, res) => {
         "PartyA": phoneNumber,
         "PartyB": process.env.SHORT_CODE,
         "PhoneNumber": phoneNumber,
-        "CallBackURL": "https://mydomain.com/path",
-        "AccountReference": "CompanyXLTD",
-        "TransactionDesc": "Payment of product y" 
+        "CallBackURL": "https://geraldmumo.vercel.app/",
+        "AccountReference": "price payment",
+        "TransactionDesc": "price payment " 
     }
 
-    // const stkResponse = await axios.post('https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest',{
-    //     stkRequestBody,
-    // },{
-    //     headers: {
-    //         Authorization: `Bearer ${token}`
-    //     }
-    // })
+    const stkResponse = await axios.post('https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest',stkRequestBody,{
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
 
-    // console.log(stkResponse.data);
+    console.log(stkResponse.data);
 
     return res.json({ success: true, message: 'Posted successfully' });
   }catch(err) {
