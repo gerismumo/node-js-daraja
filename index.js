@@ -3,7 +3,9 @@ const app = express();
 const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
-dotenv.config();
+const router = require('./routes/routes');
+
+dotenv.config({path: '.env'});
 
 app.use(cors());
 app.use(express.json());
@@ -14,27 +16,11 @@ app.get('/', (req,res) => {
     res.sendFile(__dirname + '/public/index.html');
 });
 
-app.post('/text-form', (req, res) => {
-  
-  const amount = req.body.amount;
-  const phoneNumber = req.body.phone;
-
-  console.log(amount, phoneNumber);
-  try {
-    if(amount !== '' && phoneNumber !== '') {
-      return res.json({success: true, message: 'posted successfully'})
-    }else {
-      return res.json({success: false, message: 'please fill all the fields'})
-    }
-  }catch(err) {
-    res.json({success: false, message: err.message});
-  }
- 
-});
+app.use('/', router);
 
 
 
-const port = 5000;
+const port = process.env.PORT;
 app.listen( port,() => {
     console.log(`listening on ${port}`);
 })
