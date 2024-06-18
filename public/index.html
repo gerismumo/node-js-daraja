@@ -38,7 +38,7 @@
                 phone
             }
             try {
-                const response = await fetch('/text-form', {
+                const response = await fetch('/express-payment', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -60,9 +60,6 @@
             }catch (error) {
                 console.log(error);
             }
-            
-            
-
         })
     </script>
 </body>
