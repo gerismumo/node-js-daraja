@@ -5,9 +5,9 @@ const axios = require('axios');
 const payment = async (req, res) => {
   try {
     const amount = parseInt(req.body.amount, 10);
-    const phoneNumber = parseInt(req.body.phone, 10);
+    const phoneNumber = req.body.phone;
 
-    if (isNaN(amount) || isNaN(phoneNumber)) {
+    if (isNaN(amount) || phoneNumber === "") {
       return res.json({ success: false, message: 'Please fill all the fields' });
     }
 

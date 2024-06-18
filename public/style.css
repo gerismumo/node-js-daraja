@@ -1,40 +1,78 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.Toastify__toast--info {
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+}
+
 body {
     display: flex;
     justify-content: center;
-    flex-direction: column;
+    align-items: center;
+    height: 100vh; 
+    background-color: #222; 
+    color: #fff; 
+    font-family: Arial, sans-serif;
 }
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+}
+
+
 .title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
+    margin-bottom: 20px; 
 }
+
+.title h1 {
+    font-size: 2rem;
+}
+
+
 .form {
+    background-color: #333; 
+    padding: 20px; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+    width: 300px; 
+}
+
+form {
     display: flex;
-    justify-content: center;
+    flex-direction: column; 
 }
 
-.form form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    width: 300px;
-}
-
-form input {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 2px solid #ddd;
-    outline: none;
-}
-
-form button {
-    padding: 8px 0;
-    width: 100%;
-    background-color: lightskyblue;
-    color: black;
+input[type="number"],
+input[type="tel"],
+button {
+    margin-bottom: 10px;
+    padding: 10px; 
     border: none;
-    border-radius: 5px;
-    font-size: 20px;
+    border-radius: 4px;
+    font-size: 1rem; 
 }
+
+input[type="number"],
+input[type="tel"] {
+    background-color: #444;
+    color: #fff; 
+}
+
+button {
+    background-color: #DC5F00; 
+    color: #fff; 
+    cursor: pointer; 
+    font-size: 18px;
+    font-weight: 800;
+}
+
+

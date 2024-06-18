@@ -3,30 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <link rel="stylesheet" href="style.css">
     <title>Node Js Daraja Api</title>
 </head>
 <body>
-    <div class="title">
-        <h1>Node Js Daraja Api</h1>
+    <div class="container">
+        <div class="title">
+            <h1>Node Js Daraja Api</h1>
+        </div>
+        <div class="form">
+            <form id="myForm">
+                <input type="number" 
+                name="amount" 
+                id="amount"
+                placeholder="Enter a amount"
+                min="1"
+                >
+                <input 
+                type="tel" 
+                name="phoneNumber" 
+                id="phoneNumber"
+                placeholder="phone number"
+                >
+                <button type="submit">Test</button>
+            </form>
+        </div>
     </div>
-    <div class="form">
-        <form id="myForm">
-            <input type="number" 
-            name="amount" 
-            id="amount"
-            placeholder="Enter a amount"
-            min="1"
-            >
-            <input 
-            type="tel" 
-            name="phoneNumber" 
-            id="phoneNumber"
-            placeholder="phone number"
-            >
-            <button type="submit">Test</button>
-        </form>
-    </div>
+    
     <script>
         document.getElementById('myForm').addEventListener('submit', async(e) => {
             e.preventDefault();
@@ -51,10 +56,18 @@
                 }
 
                 const data = await response.json();
-                if(data.success) {
-                    alert(data.message);
-                }else {
-                    alert(data.message);
+                if (data.success) {
+                    Toastify({
+                        text: data.message,
+                        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                        className: "info",
+                    }).showToast();
+                } else {
+                    Toastify({
+                        text: data.message,
+                        backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+                        className: "info",
+                    }).showToast();
                 }
 
             }catch (error) {
