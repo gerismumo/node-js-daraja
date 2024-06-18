@@ -53,7 +53,7 @@ const payment = async (req, res) => {
     });
 
     const token = response.data.access_token;
-    console.log(token);
+    // console.log(token);
 
     // STK Push preparation
     const date = new Date();
@@ -90,7 +90,19 @@ const payment = async (req, res) => {
       }
     });
 
-    console.log('expressss',stkResponse.data)
+    //save transaction
+    const transaction = {
+      phoneNumber,
+      amount,
+      transactionTime: Timestamp,
+      merchantRequestID: stkResponse.data.MerchantRequestID,
+      transactionId: stkResponse.data.CheckoutRequestID,
+      responseCode: stkResponse.data.ResponseCode,
+      responseDescription: stkResponse.data.ResponseDescription
+    };
+
+  
+    // console.log('expressss',stkResponse.data)
    
     if(stkResponse.data.ResponseCode === 0) {
         return res.json({ success: true, message: stkResponse.data.ResponseDescription});
