@@ -2,6 +2,9 @@ const dotenv = require("dotenv");
 dotenv.config({ path: "../.env" });
 const axios = require("axios");
 
+
+
+
 const payment = async (req, res) => {
   try {
     const amount = parseInt(req.body.amount, 10);
@@ -61,7 +64,10 @@ const payment = async (req, res) => {
         },
       }
     );
+
+
     const token = response.data.access_token;
+
 
     // STK Push preparation
     const date = new Date();

@@ -32,7 +32,9 @@ const callBack = (req, res) => {
     transactionDetails,
   };
 
-  console.log("callback", data);
+  console.log("data", data);
+
+  console.log("callback", CallbackMetadata);
   return res.json({ success: true, message: ResultDesc });
 
 };
